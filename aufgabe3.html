@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .intro {
+        background: black;
+        height: 100vh;
+        color: yellow;
+        display: grid;
+        gap: 1rem;
+        grid-template-areas:
+          "header header header"
+          "main main main"
+          "main main main"
+          "footer footer footer";
+      }
+      .box {
+        background: rebeccapurple;
+        display: flex;
+        color: white;
+        justify-content: center;
+        align-items: center;
+      }
+      #box-1 {
+        /* grid-column-start: 1;
+            grid-column-end: 1; */
+        grid-area: header;
+      }
+      @media (min-width: 768px) {
+        /* #box-1 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        } */
+        /* .intro {
+                grid-template-columns: 1fr 1fr;
+            } */
+      }
+      @media (min-width: 1200px) {
+        /* .intro {
+                grid-template-columns: 1fr 1fr 1fr;
+            } */
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="intro">
+        <div class="box" id="box-1">
+          <h1>1</h1>
+        </div>
+        <div class="box">
+          <h1>2</h1>
+        </div>
+        <div class="box">
+          <h1>3</h1>
+        </div>
+        <div class="box">
+          <h1>4</h1>
+        </div>
+        <div class="box">
+          <h1>5</h1>
+        </div>
+      </section>
+      <summary>
+        <h1>test</h1>
+        <details>
+          <p>Hello</p>
+        </details>
+      </summary>
+    </main>
+  </body>
+</html>

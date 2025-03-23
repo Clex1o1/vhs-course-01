@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .intro {
+            background: black;
+            height: 100vh;
+            color: yellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 1rem;
+            padding: 20px;
+            
+        }
+        .description {
+            margin-top: 1rem; // 16px 
+        }
+      
+
+        .button {
+            background: transparent;
+            border: 2px solid grey;
+            border-radius: 3px;
+            color: red;
+        }
+        .button-1 {
+            color: inherit;
+        }
+
+
+
+       
+    </style>
+</head>
+<body>
+    <main>
+        <section class="intro">
+            <h1>Dev-Cult</h1>
+            <p class="description">Join the underground community of developers 
+                devoted to the dark arts of <b>coding</b></p>
+                <div class="button-container">
+                    <button class="button-1 button">Join the cult</button>
+                    <button class="button-2 button">Explore Chapters</button>
+                </div>
+        </section>
+    </main>
+</body>
+</html>
