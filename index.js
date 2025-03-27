@@ -1,5 +1,24 @@
 const express = require("express");
 const app = express();
+const ejsExamplesRouter = require('./routes/ejs-examples');
+const expressLayouts = require('express-ejs-layouts');
+
+// Set EJS as templating engine
+app.set('view engine', 'ejs');
+app.set('views', './templates');
+
+// Set up express-ejs-layouts
+app.use(expressLayouts);
+app.set('layout', 'layout'); // Set the default layout
+app.set("layout extractScripts", true); // Extract scripts to the end of the body
+app.set("layout extractStyles", true); // Extract styles to the head
+
+// Middleware to parse request body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Use the EJS examples router
+app.use('/ejs', ejsExamplesRouter);
 
 app.get("/post", (req, res) => {
     res.send("OK")
