@@ -1,107 +1,88 @@
-# Simple Express Server with EJS
+# Simple Server
 
-This is the simplest possible setup for server-side rendering with Express and EJS.
+## Struktur
 
-## Setup
+- `index.html`: Eine einfache Startseite
+- `aufgabe2.html`: Erste Schritte mit CSS
+- `aufgabe3.html`: Fortgeschrittene CSS-Techniken
+- `aufgabe4.html`: Komplexere Layouts und Interaktionen
 
-1. Install dependencies:
+---
 
-```bash
-npm install express ejs cors
-```
+- `simple-server.js`: Ein minimaler Express-Server
+- Grundlegende Server-Konfiguration
+- Einfache Routen
+- Statische Dateien ausliefern
 
-2. Create the following files:
+---
 
-`simple-server.js`:
+- `index.js`: Hauptserver mit Template-Engine
+- `routes/`: Verschiedene Routen für unterschiedliche Seiten
+- `templates/`: Wiederverwendbare HTML-Templates
+  - `layout.ejs`: Grundgerüst für alle Seiten
+  - `index.ejs`: Startseite mit dynamischen Daten
+  - `about.ejs`: Über uns Seite
+  - `users.ejs`: Benutzerliste mit Tabellen
 
-```javascript
-const express = require("express");
-const cors = require("cors");
-const app = express();
+### Voraussetzungen
 
-// Enable CORS for all routes
-app.use(cors());
+- Node.js (eine Software, die JavaScript außerhalb des Browsers ausführen kann)
+- Ein Texteditor (wie VS Code)
 
-// Set up EJS
-app.set("view engine", "ejs");
-app.set("views", "./views");
+### Installation
 
-// Simple route that renders a template
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Simple Server",
-    message: "Hello from Server!",
-  });
-});
+1. Öffne die Kommandozeile (Terminal)
+2. Navigiere in den Projektordner
+3. Führe folgende Befehle aus:
+   ```bash
+   npm install
+   ```
+   Dies installiert alle benötigten Programme (sogenannte "Dependencies")
 
-// Start server
-app.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
-});
-```
+### Starten des Servers
 
-`views/index.ejs`:
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p><%= message %></p>
-  </body>
-</html>
-```
-
-## Running the Server
+Je nach Lernphase kannst du verschiedene Server starten:
 
 ```bash
-node simple-server.js
+npm run server:start:simple
+# oder
+npm run server:start
 ```
 
-Visit http://localhost:3000 to see your rendered page.
+Der Server läuft dann unter: http://localhost:3000
 
-## How it Works
+## 📁 Projektstruktur
 
-1. Express is configured to use EJS as the view engine
-2. When you visit the root route ('/'), Express renders the 'index' template
-3. The template receives two variables: `title` and `message`
-4. EJS replaces `<%= title %>` and `<%= message %>` with the actual values
-5. The final HTML is sent to the browser
-
-## Key Concepts
-
-- `app.set('view engine', 'ejs')`: Tells Express to use EJS for rendering
-- `app.set('views', './views')`: Sets the directory where templates are stored
-- `res.render()`: Renders a template with data
-- `<%= variable %>`: EJS syntax to output a variable's value
-- `app.use(cors())`: Enables CORS for all routes
-
-## CORS Configuration
-
-The server is configured to allow CORS (Cross-Origin Resource Sharing) for all routes. This means:
-
-- Any domain can make requests to your API
-- All HTTP methods are allowed (GET, POST, PUT, DELETE, etc.)
-- All headers are allowed
-- Credentials are allowed
-
-If you need more specific CORS configuration, you can customize it like this:
-
-```javascript
-app.use(
-  cors({
-    origin: "http://example.com", // Allow only specific origin
-    methods: ["GET", "POST"], // Allow only specific methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow only specific headers
-    credentials: true, // Allow credentials (cookies, authorization headers)
-  })
-);
+```
+.
+├── index.html, aufgabe2.html, ...  # Phase 1: HTML & CSS Beispiele
+├── simple-server.js                # Phase 2: Einfacher Express-Server
+├── index.js                        # Phase 3: Hauptserver
+├── routes/                         # Phase 3: Routen
+│   └── ejs-examples.js
+└── templates/                      # Phase 3: Templates
+    ├── layout.ejs
+    ├── index.ejs
+    ├── about.ejs
+    └── users.ejs
 ```
 
-## Docs
+## 🛠️ Technische Details
 
-[EJS](https://ejs.co/#install)
-[CORS](https://github.com/expressjs/cors)
+- HTML5 für die Struktur
+- CSS3 für das Design
+- Express.js als Webserver-Framework
+- EJS als Template-Engine
+- Bootstrap für das Design-Framework
+
+## 📚 Nächste Schritte
+
+Nach diesem Kurs solltest du:
+
+- Verstehen, wie Webseiten aufgebaut sind
+- Eigene HTML-Seiten mit CSS gestalten können
+- Einen einfachen Webserver erstellen können
+- Dynamische Webseiten mit Templates bauen können
+- Daten verarbeiten und anzeigen können
+
+Viel Erfolg beim Lernen! 🎉

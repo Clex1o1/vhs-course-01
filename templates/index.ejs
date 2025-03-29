@@ -1,15 +1,24 @@
+<!-- Bootstrap-Karte für ein schönes Layout -->
 <div class="card">
   <div class="card-body">
+    <!-- Titel und Nachricht werden dynamisch von der Route gesetzt -->
     <h1 class="card-title"><%= title %></h1>
     <p class="card-text"><%= message %></p>
 
+    <!-- Benutzerinformationen -->
     <h3>User Information</h3>
+    <!-- Zugriff auf die Benutzerdaten, die von der Route übergeben wurden -->
     <p>Name: <%= user.name %></p>
     <p>Age: <%= user.age %></p>
 
+    <!-- Liste der Items -->
     <h3>Items List</h3>
+    <!-- Bootstrap-Liste für ein schönes Aussehen -->
     <ul class="list-group">
+      <!-- Schleife über alle Items -->
+      <!-- items.forEach ist eine JavaScript-Methode, die für jedes Item in der Liste den Code ausführt -->
       <% items.forEach(function(item) { %>
+      <!-- Zeige jedes Item als Listeneintrag an -->
       <li class="list-group-item"><%= item %></li>
       <% }); %>
     </ul>

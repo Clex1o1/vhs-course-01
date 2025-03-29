@@ -1,18 +1,30 @@
+<!-- Bootstrap-Karte für ein schönes Layout -->
 <div class="card">
   <div class="card-body">
+    <!-- Titel der Seite -->
     <h1 class="card-title">Users List</h1>
+
+    <!-- Responsive Tabelle (passt sich an die Bildschirmgröße an) -->
     <div class="table-responsive">
+      <!-- Bootstrap-Tabelle mit gestreiftem Design -->
       <table class="table table-striped">
+        <!-- Tabellenkopf -->
         <thead>
           <tr>
             <th>Name</th>
             <th>Age</th>
           </tr>
         </thead>
+        <!-- Tabellenkörper -->
         <tbody>
+          <!-- Schleife über alle Benutzer -->
+          <!-- users.forEach ist eine JavaScript-Methode, die für jeden Benutzer den Code ausführt -->
           <% users.forEach(function(user) { %>
+          <!-- Neue Tabellenzeile für jeden Benutzer -->
           <tr>
+            <!-- Zeige den Namen des Benutzers -->
             <td><%= user.name %></td>
+            <!-- Zeige das Alter des Benutzers -->
             <td><%= user.age %></td>
           </tr>
           <% }); %>
