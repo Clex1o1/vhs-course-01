@@ -46,15 +46,40 @@ router.get("/users", (req, res) => {
 // Einzelne Benutzerseite
 // Diese Route wird aufgerufen, wenn jemand /ejs/users/1 (oder eine andere ID) besucht
 // :userId ist ein Platzhalter für die tatsächliche Benutzer-ID
-router.get("/users/:userId", (req, res) => {
+router.get("/users/:userId/:name", (req, res) => {
   // Erstelle eine Liste von Beispiel-Benutzern
+  const userId = req.params.userId;
+  const name = req.params.name;
+  const list1 = [userId, name, age];
+  let age = req.query.age;
+
+  // Ort + BenutzerID
+  console.log(userId, name, age);
   const users = [
-    { name: "John", age: 30 },
+    { name: "John", age: 30, ort: "Wuppertal" },
     { name: "Jane", age: 25 },
     { name: "Bob", age: 35 },
   ];
+
   // Rendere die users.ejs Seite mit der Benutzerliste
   res.render("users", { users, title: "Users List" });
+});
+
+var bastelItems = [];
+
+router.get("/bastel-item", (req, res) => {
+  const name = req.query.name;
+  const color = req.query.color;
+  bastelItems.push({ name: name, color: color });
+
+  const search = req.query.search;
+  let searchResult;
+  for (let i = 0; i < bastelItems.length; i++) {
+    if (bastelItems[i].color === search) {
+      searchResult = bastelItems[i];
+    }
+  }
+  res.json({ searchResult });
 });
 
 // Exportiere den Router, damit er in index.js verwendet werden kann
