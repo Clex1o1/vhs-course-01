@@ -2,7 +2,10 @@
 const express = require("express"); // Express ist ein Framework für Webserver
 const app = express(); // Erstelle eine neue Express-Anwendung
 const ejsExamplesRouter = require("./routes/ejs-examples"); // Importiere die EJS-Beispiele-Route
+const sqlExamplesRouter = require("./routes/sql-examples"); // Importiere die SQL-Beispiele-Route
 const expressLayouts = require("express-ejs-layouts"); // Importiere das Layout-System
+const path = require("path");
+const { initializeDatabase, insertSampleData } = require("./db/setup");
 
 // Konfiguriere EJS als Template-Engine
 // EJS erlaubt uns, dynamische HTML-Seiten zu erstellen
@@ -21,57 +24,20 @@ app.set("layout extractStyles", true); // CSS-Dateien werden im Head-Bereich ein
 app.use(express.urlencoded({ extended: true })); // Verarbeitet Formulardaten
 app.use(express.json()); // Verarbeitet JSON-Daten
 
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Initialize database and insert sample data
+initializeDatabase();
+insertSampleData();
+
 // Verwende die EJS-Beispiele-Route
 // Alle URLs, die mit /ejs beginnen, werden an diese Route weitergeleitet
-app.use("/ejs", ejsExamplesRouter);
+app.use(ejsExamplesRouter);
 
-// Beispiel-Route für POST-Anfragen
-// Diese Route antwortet einfach mit "OK" auf POST-Anfragen
-app.get("/post", (req, res) => {
-  res.send("OK");
-});
-
-// Hauptseite (Root-Route)
-// Diese Route wird aufgerufen, wenn jemand die Startseite besucht
-app.get("/", (req, res) => {
-  // Sammle verschiedene Informationen über die Anfrage
-  const body = req.body; // Daten aus dem Body der Anfrage
-  const params = req.params; // URL-Parameter
-  const query = req.query; // Query-String-Parameter (z.B. ?name=Max)
-  const headers = req.headers; // HTTP-Header
-  const cookies = req.cookies; // Cookies
-  const ip = req.ip; // IP-Adresse des Besuchers
-  const userAgent = req.userAgent; // Browser-Informationen
-
-  // Gib die ausgewählte Option in der Konsole aus
-  console.log(query.auswahl);
-
-  // Sende alle gesammelten Informationen als JSON zurück
-  res.status(200).json({
-    body,
-    params,
-    query,
-    headers,
-    cookies,
-    ip,
-  });
-
-  // Beispiele für andere mögliche Antworten (auskommentiert):
-  // res.status(400).json({
-  //     error: "Bad Request",
-  // });
-
-  // res.status(500).json({
-  //     error: "Internal Server Error",
-  // });
-});
-
-// Zweite Beispiel-Route
-// Diese Route zeigt, wie man eine einfache Textnachricht zurückgibt
-app.get("/route-2", (req, res) => {
-  console.log("Diese Seite wurde besucht 3");
-  res.send("Hello World 2");
-});
+// Verwende die SQL-Beispiele-Route
+// Alle URLs, die mit /sql-examples beginnen, werden an diese Route weitergeleitet
+app.use("/sql-examples", sqlExamplesRouter);
 
 // Starte den Server
 // Der Server läuft auf Port 3000 und ist dann unter http://localhost:3000 erreichbar

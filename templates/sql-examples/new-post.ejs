@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h1>Create New Post</h1>
+
+  <form action="/sql-examples/posts" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea
+        class="form-control"
+        id="content"
+        name="content"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="user_id" class="form-label">Author</label>
+      <select class="form-select" id="user_id" name="user_id" required>
+        <option value="">Select an author</option>
+        <% users.forEach(user => { %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Post</button>
+  </form>
+</div>

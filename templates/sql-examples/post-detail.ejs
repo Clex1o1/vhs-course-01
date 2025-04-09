@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title"><%= post.title %></h1>
+      <h6 class="card-subtitle mb-2 text-muted">
+        By <%= post.author_name %> on <%= new
+        Date(post.created_at).toLocaleDateString() %>
+      </h6>
+      <div class="card-text mt-4"><%= post.content %></div>
+      <div class="mt-4">
+        <a href="/sql-examples/posts" class="btn btn-secondary"
+          >Back to Posts</a
+        >
+        <a
+          href="/sql-examples/posts/<%= post.id %>/edit"
+          class="btn btn-primary"
+          >Edit Post</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

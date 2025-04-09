@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h1>All Posts</h1>
+  <a href="/sql-examples/posts/new" class="btn btn-primary mb-3"
+    >Create New Post</a
+  >
+
+  <div class="row">
+    <% posts.forEach(post => { %>
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              href="/sql-examples/posts/<%= post.id %>"
+              class="text-decoration-none"
+            >
+              <%= post.title %>
+            </a>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            By <%= post.author_name %>
+          </h6>
+          <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
+          <small class="text-muted"
+            >Posted on <%= new Date(post.created_at).toLocaleDateString()
+            %></small
+          >
+          <div class="mt-2">
+            <a
+              href="/sql-examples/posts/<%= post.id %>"
+              class="btn btn-sm btn-outline-primary"
+              >Read More</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>
