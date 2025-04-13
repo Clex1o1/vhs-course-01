@@ -33,14 +33,26 @@ router.get("/about", (req, res) => {
 // Benutzerliste
 // Diese Route wird aufgerufen, wenn jemand /ejs/users besucht
 router.get("/users", (req, res) => {
+  // /users?ort=Wuppertal
   // Erstelle eine Liste von Beispiel-Benutzern
+  const ort = req.query.ort; // Wuppertal
   const users = [
-    { name: "John", age: 30 },
-    { name: "Jane", age: 25 },
-    { name: "Bob", age: 35 },
+    { name: "John", age: 30, ort: "Wuppertal" }, // stelle 0
+    { name: "Jane", age: 25, ort: "Solingen" }, // stelle 1
+    { name: "Bob", age: 35, ort: "Wuppertal" }, // stelle 2
   ];
+
+  let filteredUsers = []; // leere Liste
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i]; //  { name: "John", age: 30, ort: "Wuppertal" }
+    if (user.ort === ort) {
+      filteredUsers.push(user); //  [{ name: "Jane", age: 25, ort: "Solingen" }]
+    }
+  }
+
   // Rendere die users.ejs Seite mit der Benutzerliste
-  res.render("users", { users, title: "Users List" });
+  // { filteredUsers: filteredUsers }
+  res.render("users", { users: filteredUsers, title: "Users List" });
 });
 
 // Einzelne Benutzerseite
@@ -57,8 +69,8 @@ router.get("/users/:userId/:name", (req, res) => {
   console.log(userId, name, age);
   const users = [
     { name: "John", age: 30, ort: "Wuppertal" },
-    { name: "Jane", age: 25 },
-    { name: "Bob", age: 35 },
+    { name: "Jane", age: 25, ort: "Solingen" },
+    { name: "Bob", age: 35, ort: "Remscheid" },
   ];
 
   // Rendere die users.ejs Seite mit der Benutzerliste

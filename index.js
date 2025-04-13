@@ -28,8 +28,8 @@ app.use(express.json()); // Verarbeitet JSON-Daten
 app.use(express.static(path.join(__dirname, "public")));
 
 // Initialize database and insert sample data
-initializeDatabase();
-insertSampleData();
+// initializeDatabase();
+// insertSampleData();
 
 // Verwende die EJS-Beispiele-Route
 // Alle URLs, die mit /ejs beginnen, werden an diese Route weitergeleitet

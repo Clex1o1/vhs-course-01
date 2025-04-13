@@ -1,3 +1,25 @@
+/**
+ * Database Schema
+ *
+ * ```mermaid
+ * erDiagram
+ *     users ||--o{ posts : "writes"
+ *     users {
+ *         int id PK
+ *         string name
+ *         string email
+ *         datetime created_at
+ *     }
+ *     posts {
+ *         int id PK
+ *         string title
+ *         string content
+ *         int user_id FK
+ *         datetime created_at
+ *     }
+ * ```
+ */
+
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 

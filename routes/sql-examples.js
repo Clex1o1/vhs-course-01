@@ -17,11 +17,25 @@ router.get("/posts", (req, res) => {
         return res.status(500).send("Error fetching posts");
       }
       res.render("sql-examples/posts", {
-        posts,
+        posts: posts,
         title: "All Posts",
       });
     }
   );
+});
+
+// Display form to create new post
+router.get("/posts/new", (req, res) => {
+  db.all("SELECT * FROM users", (err, users) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error fetching users");
+    }
+    res.render("sql-examples/new-post", {
+      users,
+      title: "Create New Post",
+    });
+  });
 });
 
 // Display single post
@@ -51,23 +65,19 @@ router.get("/posts/:id", (req, res) => {
   );
 });
 
-// Display form to create new post
-router.get("/posts/new", (req, res) => {
-  db.all("SELECT * FROM users", (err, users) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Error fetching users");
-    }
-    res.render("sql-examples/new-post", {
-      users,
-      title: "Create New Post",
-    });
-  });
-});
-
 // Handle new post submission
 router.post("/posts", (req, res) => {
   const { title, content, user_id } = req.body;
+  // db.run(
+  //   "INSERT INTO users (name, email) VALUES (?, ?)",
+  //   [author_name, author_name],
+  //   (err) => {
+  //     if (err) {
+  //       console.error(err);
+  //       req.status(500).send("Error creating user");
+  //     }
+  //   }
+  // );
   db.run(
     "INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)",
     [title, content, user_id],
